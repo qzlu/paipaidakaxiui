@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/logs/main" ,
+    "pages/video/main" ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#32353c",
+    "navigationBarTitleText": "排排大咖秀",
+    "navigationBarTextStyle": "white",
+    "backgroundColor":"#32353c"
+  }
+}
