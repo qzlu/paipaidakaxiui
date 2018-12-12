@@ -80,7 +80,8 @@ export default {
        * 大咖说
        */
       videoList1: [{
-        id: 'w0772onur3g',
+        //id: 'w0772onur3g',
+        id:'b0800xc933p',
         imgUrl: '/Public/Image/Weixin/20181026/1-1.jpg',
         active:false
       },{
@@ -199,6 +200,7 @@ export default {
       fixed:false,
       height:null,//轮播图高度
       swiperHeight: '5820rpx',
+      source:20013
     }
   },
   watch:{
@@ -258,7 +260,7 @@ export default {
             encryptedData: e.mp.detail.encryptedData,
             iv: e.mp.detail.iv,
             sign: _this.sign,
-            source: 20013
+            source: _this.source
           },
           success: function (params) {
             if (params.data.success) {
@@ -296,7 +298,7 @@ export default {
                 sign: _this.sign,
                 phone:phoneNumber,
                 code:code,
-                source: '20013',
+                source: _this.source,
                 utm_platform: 'xcx'
             },
             success (res) {
@@ -309,7 +311,7 @@ export default {
                     sa.init()
                     if(res.data.is_register){
                         app.sensors.track('SignUp', {
-                            $latest_utm_sign: '20013',
+                            $latest_utm_sign: _this.source,
                             $latest_utm_platform: 'xcx'
                         })
                     }
@@ -372,8 +374,13 @@ export default {
     app.sensors.para.autoTrack.pageShow={
       $latest_utm_sign: '20013',
       $latest_utm_platform: 'xcx',
-      xcx_type:'视频小程序'
+      xcx_type:'视频小程序' 
     }
+  },
+  mounted(){
+      if(this.$root.$mp.query.utm_source){
+          this.source = this.$root.$mp.query.utm_source
+      }
   },
   onShow(){
     var _this = this
@@ -395,7 +402,8 @@ export default {
   onShareAppMessage (res) {
     return {
       title: '这里有超值私募干货，一起来看',
-      path: 'pages/index/main?utm_source=20013&utm_platform=xcx&xcx_type=视频小程序'
+      imageUrl:'https://www.simuwang.com/Public/Image/Weixin/20181026/1-1.jpg',
+      path: 'pages/index/main?utm_source=20013&utm_platform=xcx&xcx_type=视频小程序',
     }
   },
   onPageScroll:function(e){
